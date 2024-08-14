@@ -1,0 +1,7 @@
+# Ignore the service account key file
+*.json
+
+# Ignore other unnecessary files
+__pycache__/
+*.pyc
+.DS_Store
