@@ -6,11 +6,14 @@ from datetime import datetime
 
 # Google Sheets setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("S:\Sem 8", scope)
+
+# Directly use the secret dictionary
+creds_dict = st.secrets["gcp_service_account"]
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
 # Open your Google Sheet
-sheet = client.open("Milk Records").sheet1  # "Milk Records" is the name of your sheet
+sheet = client.open("Milk Records").sheet1  # Replace with your Google Sheet name
 
 # Convert the sheet to a DataFrame
 data = sheet.get_all_records()
